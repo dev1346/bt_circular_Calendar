@@ -68,6 +68,14 @@
   left: 120px;
 }
 
+.side-ring.expanded .bar:nth-child(1) { left: 0px; }
+.side-ring.expanded .bar:nth-child(2) { left: 45px; }
+.side-ring.expanded .bar:nth-child(3) { left: 90px; }
+.side-ring.expanded .bar:nth-child(4) { left: 135px; }
+.side-ring.expanded .bar:nth-child(5) { left: 180px; }
+.side-ring.expanded .bar:nth-child(6) { left: 225px; }
+.side-ring.expanded .bar:nth-child(7) { left: 270px; }
+
 .day-name-dial, .month-dial, .day-dial {
   position: absolute;
   top: 50%;
@@ -277,6 +285,15 @@ h1 {
 
 h2 {
   font-size: 15px;
+}
+
+.clock-container {
+  transition: opacity 0.4s ease;
+  opacity: 1;
+}
+
+.clock-container.faded {
+  opacity: 0.1;
 }
 
 .center-dial {
@@ -1348,11 +1365,11 @@ h2 {
 }
 
 .side-ring {
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  -moz-transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  -ms-transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  -o-transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   width: 200px;
   height: 200px;
   background-color: #202020;
@@ -1360,6 +1377,33 @@ h2 {
   box-shadow: 0px 2px 2px #000;
   color: #000;
   overflow: hidden;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.side-ring.expanded {
+  width: 450px;
+  height: 450px;
+  top: calc(50% - 225px) !important;
+  left: calc(30% - 225px) !important;
+  z-index: 100;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.5);
+}
+
+.side-ring.expanded .fa-cloud {
+  font-size: 110px;
+  top: calc(50% - 120px);
+  left: calc(50% - 65px);
+}
+
+.side-ring.expanded .weather-desc {
+  font-size: 44px;
+  top: calc(50% - 10px);
+}
+
+.side-ring.expanded .temperature {
+  font-size: 40px;
+  top: calc(50% + 45px);
 }
 
 #weather {
@@ -1424,12 +1468,27 @@ h2 {
   left: calc(50% - 65px);
   width: 140px;
   height: 140px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-ring.expanded .bars {
+  width: 315px;
+  height: 315px;
+  top: calc(50% - 157px);
+  left: calc(50% - 146px);
 }
 
 .bar {
   width: 18px;
   height: 140px;
   margin: 0px -4px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-ring.expanded .bar {
+  width: 40px;
+  height: 315px;
+  margin: 0px -9px;
 }
 
 .day-letter {
@@ -1438,6 +1497,12 @@ h2 {
   color: #555;
   font-size: 12px;
   text-align: center;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-ring.expanded .day-letter {
+  top: 247px;
+  font-size: 27px;
 }
 
 .temp-bar {
@@ -1445,11 +1510,12 @@ h2 {
   left: 1px;
   width: 16px;
   background: linear-gradient(to top, #007AFF, #FF3B30);
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-ring.expanded .temp-bar {
+  width: 36px;
+  left: 2px;
 }
 
 .temp-label {
@@ -1459,6 +1525,13 @@ h2 {
   font-size: 9px;
   text-align: center;
   color: #888;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-ring.expanded .temp-label {
+  font-size: 20px;
+  width: 58px;
+  left: -11px;
 }
 
 .controls {

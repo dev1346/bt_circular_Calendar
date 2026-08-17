@@ -90,7 +90,11 @@ $(function() {
         var maxTemp = Math.max(...maxTemps);
         var tempRange = maxTemp - minTemp;
         
-        var barHeight = 100;
+        var isExpanded = $('#steps').hasClass('expanded');
+        var scale = isExpanded ? 2.25 : 1;
+        var barHeight = 100 * scale;
+        var baseBottom = 30 * scale;
+        var labelOffset = 14 * scale;
         
         for (var i = 0; i < 7; i++) {
           var tempBarHeight = ((maxTemps[i] - minTemps[i]) / tempRange) * barHeight;
@@ -98,15 +102,15 @@ $(function() {
           
           $('#bar' + (i + 1)).css({
             'height': tempBarHeight + 'px',
-            'bottom': (30 + bottomPosition) + 'px'
+            'bottom': (baseBottom + bottomPosition) + 'px'
           });
           
           $('#max' + (i + 1)).text(Math.round(maxTemps[i]) + '°')
-            .css('bottom', (30 + bottomPosition + tempBarHeight) + 'px')
+            .css('bottom', (baseBottom + bottomPosition + tempBarHeight) + 'px')
             .css('top', 'auto');
           
           $('#min' + (i + 1)).text(Math.round(minTemps[i]) + '°')
-            .css('bottom', (30 + bottomPosition - 14) + 'px')
+            .css('bottom', (baseBottom + bottomPosition - labelOffset) + 'px')
             .css('top', 'auto');
         }
         
@@ -131,6 +135,10 @@ $(function() {
     } catch (error) {
       console.error('Fehler beim Laden der Wetterdaten:', error);
     }
+  }
+  
+  function updateBarsScale() {
+    loadTemperatureForecast();
   }
   
   function getWeatherDescription(code) {
@@ -410,6 +418,28 @@ $(function() {
       console.error('Fehler bei Ortssuche:', error);
     }
   }
+
+  $('.side-ring').click(function(e) {
+    e.stopPropagation();
+    var $this = $(this);
+    
+    if ($this.hasClass('expanded')) {
+      $this.removeClass('expanded');
+      $('.clock-container').removeClass('faded');
+    } else {
+      $('.side-ring').removeClass('expanded');
+      $this.addClass('expanded');
+      $('.clock-container').addClass('faded');
+    }
+    
+    setTimeout(updateBarsScale, 50);
+  });
+
+  $(document).click(function() {
+    $('.side-ring.expanded').removeClass('expanded');
+    $('.clock-container').removeClass('faded');
+    setTimeout(updateBarsScale, 50);
+  });
 
   init();
 });
