@@ -91,26 +91,28 @@ $(function() {
         var tempRange = maxTemp - minTemp;
         
         var isExpanded = $('#steps').hasClass('expanded');
-        var scale = isExpanded ? 2.25 : 1;
-        var barHeight = 100 * scale;
-        var baseBottom = 30 * scale;
-        var labelOffset = 14 * scale;
+        var containerHeight = isExpanded ? 315 : 140;
+        var topLabelSpace = isExpanded ? 25 : 12;
+        var bottomLabelSpace = isExpanded ? 20 : 10;
+        var dayLetterSpace = isExpanded ? 40 : 20;
+        var barAreaHeight = containerHeight - topLabelSpace - bottomLabelSpace - dayLetterSpace;
+        var barBottom = dayLetterSpace + bottomLabelSpace;
         
         for (var i = 0; i < 7; i++) {
-          var tempBarHeight = ((maxTemps[i] - minTemps[i]) / tempRange) * barHeight;
-          var bottomPosition = ((minTemps[i] - minTemp) / tempRange) * barHeight;
+          var tempBarHeight = ((maxTemps[i] - minTemps[i]) / tempRange) * barAreaHeight;
+          var bottomPosition = ((minTemps[i] - minTemp) / tempRange) * barAreaHeight;
           
           $('#bar' + (i + 1)).css({
             'height': tempBarHeight + 'px',
-            'bottom': (baseBottom + bottomPosition) + 'px'
+            'bottom': (barBottom + bottomPosition) + 'px'
           });
           
           $('#max' + (i + 1)).text(Math.round(maxTemps[i]) + '°')
-            .css('bottom', (baseBottom + bottomPosition + tempBarHeight) + 'px')
+            .css('bottom', (barBottom + bottomPosition + tempBarHeight + 5) + 'px')
             .css('top', 'auto');
           
           $('#min' + (i + 1)).text(Math.round(minTemps[i]) + '°')
-            .css('bottom', (baseBottom + bottomPosition - labelOffset) + 'px')
+            .css('bottom', (barBottom + bottomPosition - 15) + 'px')
             .css('top', 'auto');
         }
         

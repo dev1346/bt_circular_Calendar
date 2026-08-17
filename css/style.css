@@ -1492,8 +1492,10 @@ h2 {
 }
 
 .day-letter {
-  position: relative;
-  top: 110px;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
   color: #555;
   font-size: 12px;
   text-align: center;
@@ -1501,7 +1503,7 @@ h2 {
 }
 
 .side-ring.expanded .day-letter {
-  top: 247px;
+  bottom: 20px;
   font-size: 27px;
 }
 
