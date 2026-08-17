@@ -92,9 +92,10 @@ $(function() {
         
         var isExpanded = $('#steps').hasClass('expanded');
         var containerHeight = isExpanded ? 315 : 140;
-        var topLabelSpace = isExpanded ? 25 : 12;
-        var bottomLabelSpace = isExpanded ? 20 : 10;
-        var dayLetterSpace = isExpanded ? 40 : 20;
+        var topLabelSpace = isExpanded ? 25 : 10;
+        var bottomLabelSpace = isExpanded ? 20 : 8;
+        var dayLetterSpace = isExpanded ? 40 : 18;
+        var minLabelGap = isExpanded ? 25 : 12;
         var barAreaHeight = containerHeight - topLabelSpace - bottomLabelSpace - dayLetterSpace;
         var barBottom = dayLetterSpace + bottomLabelSpace;
         
@@ -112,7 +113,7 @@ $(function() {
             .css('top', 'auto');
           
           $('#min' + (i + 1)).text(Math.round(minTemps[i]) + '°')
-            .css('bottom', (barBottom + bottomPosition - 25) + 'px')
+            .css('bottom', (barBottom + bottomPosition - minLabelGap) + 'px')
             .css('top', 'auto');
         }
         
