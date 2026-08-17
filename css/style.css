@@ -181,6 +181,10 @@ body {
   color: #666;
 }
 
+.light-mode .hour-hand {
+  background: #555;
+}
+
 .location-modal {
   display: none;
   position: fixed;
@@ -270,12 +274,28 @@ body {
 
 @container (max-width: 800px){
   .side-ring {
-    visibility: hidden;
+    visibility: visible;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  #weather {
+    top: calc(50% + 260px) !important;
+  }
+  #steps {
+    top: calc(50% + 480px) !important;
   }
 }
 @container (max-height: 800px){
   .side-ring {
-    visibility: hidden;
+    visibility: visible;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  #weather {
+    top: calc(50% + 260px) !important;
+  }
+  #steps {
+    top: calc(50% + 480px) !important;
   }
 }
 
@@ -1389,6 +1409,19 @@ h2 {
   left: calc(30% - 225px) !important;
   z-index: 100;
   box-shadow: 0px 4px 20px rgba(0,0,0,0.5);
+}
+
+@container (max-width: 800px){
+  .side-ring.expanded {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+}
+@container (max-height: 800px){
+  .side-ring.expanded {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
 }
 
 .side-ring.expanded .fa-cloud {
