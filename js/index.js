@@ -112,7 +112,7 @@ $(function() {
             .css('top', 'auto');
           
           $('#min' + (i + 1)).text(Math.round(minTemps[i]) + '°')
-            .css('bottom', (barBottom + bottomPosition - 15) + 'px')
+            .css('bottom', (barBottom + bottomPosition - 25) + 'px')
             .css('top', 'auto');
         }
         
